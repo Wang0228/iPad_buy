@@ -1,0 +1,134 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+a{
+    text-decoration: none;
+    font-family:"SF Pro TC", "SF Pro Text", "SF Pro Icons", "PingFang TC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+ul{
+    list-style: none;
+}
+img{
+    width: 100%;
+}
+header{
+    width: 1024px;
+    height: 44px;
+    margin: auto
+}
+header ul{
+    display: flex;
+    justify-content: space-around;
+}
+header li{
+    width: fit-content;
+    font-size: 12px;
+}
+header a{
+    font-weight: 600;
+    text-align: center;
+    line-height: 44px;
+    vertical-align: middle;
+    color: black;
+}
+header img{
+    width: 14px;
+    height: 24px;
+}
+.head{
+    width: 85%;
+    height: 108px;
+    margin: auto;
+    padding-top: 30px;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.buy h3{
+    font-size: 48px;
+}
+.head_left{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.head_left p{
+    width: fit-content;
+    height: fit-content;
+    background-color: #F5F5F7;
+    border-radius: 100px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    padding: 10px;
+    text-align: right;
+}
+main{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    position: relative;
+}
+.blank{
+    width: 941px;
+}
+.container{
+    width: 941px;
+    height: 531px;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+.container img{
+    overflow: hidden;
+    width: 100%;
+    border-radius: 20px;
+}
+.style{
+    width: 328px;
+    padding-top: 50px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.item{
+    margin: 0  auto;
+}
+.title{
+    display: flex;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+.title p{
+    color: #86868B;
+}
+#b{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.box{
+    width: 48%;
+    height: 102px;
+    border: 1px #86868B solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.circle{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+.box p{
+    font-size: 12px;
+}
