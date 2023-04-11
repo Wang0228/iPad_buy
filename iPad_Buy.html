@@ -78,16 +78,47 @@
     <script>
         let xhr = new XMLHttpRequest();
         let data;
+        let color_link=[];
+        let img=document.querySelector(".container img");
+        let price;
         xhr.onload = function () {
             data = JSON.parse(this.responseText);
+            
         }
         xhr.open("GET", "https://raw.githubusercontent.com/Wang0228/iPad_buy/master/iPad_Buy.json");
         xhr.send();
-
+        // let price=data.basic_price;
         window.onload = () => {
+            price=data.basic_price;
+            showprice();
+            color();
+            let box=document.querySelectorAll(".item:nth-child(1) .box");
+            for(let i=0;i<box.length;i++){
+                box[i].addEventListener("click",()=>{
+                    img.setAttribute("src",color_link[i]);
+                })
+            }
+
+            storage();
+
+            let box2=document.querySelectorAll(".item:nth-child(2) .box");
+            console.log(box2)
+            for(i=0;i<box2.length;i++){
+                box2[i].addEventListener("click",()=>{
+                    showprice();
+                })
+            }
+
+        }
+        function showprice(){
+            document.querySelector(".buy h3").innerText+=data.model;
+            document.querySelector(".buy p").innerText+=price;
+        }
+
+        function color(){
             let color = [];
             let template = document.querySelector("#exterior");
-            let title = document.querySelector(".title");
+            let title = document.querySelector(".title:nth-child(1)");
             
             data.type.color.forEach(element => {
                 for (i in element) {
@@ -96,15 +127,33 @@
                     let circle=exterior.querySelector(".box .circle");
                     text.innerText = i;
                     // console.log(data.type.color.filter(x=>Object.keys(x)==i));
-                    let a=data.type.color.filter(x=>Object.keys(x)==i);
+                    // let a=data.type.color.filter(x=>Object.keys(x)==i);
                     // console.log(Object.keys(Object.values(a[0])[0]))
-                    circle.style.backgroundColor=Object.keys(Object.values(a[0])[0]);
+                    circle.style.backgroundColor=Object.keys(Object.values(data.type.color.filter(x=>Object.keys(x)==i)[0])[0]);
+                    // console.log(Object.values(Object.values(data.type.color.filter(x=>Object.keys(x)==i)[0])[0]))
+
+                    
+                    color_link.push(Object.values(Object.values(data.type.color.filter(x=>Object.keys(x)==i)[0])[0]))
                     title.append(exterior);
                 }
-
             });
+        }
 
+        function storage(){
+            let title=document.querySelector(".item:nth-child(2) .title");
+            let template=document.querySelector("#storage");
             
+            let {Storage}=data.type;
+            // console.log(Object.keys(Storage[0]))
+            for(i=0;i<Storage.length;i++){
+                let G=document.importNode(template.content,true);
+                G.querySelector(".box h3").innerText=`${Object.keys(Storage[i])}`;
+                G.querySelector(".box p").innerText=`NT$${parseInt(Object.values(Storage[i]))+parseInt(data.basic_price)}起`;
+                title.append(G);
+            }
+            
+            // G.querySelector(".box p").innerText=Object.values(Storage[0]);
+            // console.log(Object.values(data.type.Storage));
         }
     </script>
 </body>
