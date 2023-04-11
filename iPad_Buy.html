@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="iPad_Buy.css">
 </head>
+
 <body>
     <header>
         <ul>
@@ -38,7 +40,9 @@
     </div>
 
     <main>
-        <div class="container"><img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-finish-select-gallery-202211-starlight-wifi?wid=2560&hei=1440&fmt=p-jpg&qlt=95&.v=1670631590802" alt=""></div>
+        <div class="container"><img
+                src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-finish-select-gallery-202211-starlight-wifi?wid=2560&hei=1440&fmt=p-jpg&qlt=95&.v=1670631590802"
+                alt=""></div>
         <div class="style">
             <div class="item">
                 <div class="title">
@@ -72,20 +76,37 @@
 
 
     <script>
-        let xhr=new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         let data;
-        xhr.onload=function(){
-            data=JSON.parse(this.responseText);
+        xhr.onload = function () {
+            data = JSON.parse(this.responseText);
         }
-        xhr.open("GET","https://raw.githubusercontent.com/Wang0228/iPad_buy/master/iPad_Buy.json");
+        xhr.open("GET", "https://raw.githubusercontent.com/Wang0228/iPad_buy/master/iPad_Buy.json");
         xhr.send();
 
-        window.onload=()=>{
+        window.onload = () => {
+            let color = [];
+            let template = document.querySelector("#exterior");
+            let title = document.querySelector(".title");
+            
             data.type.color.forEach(element => {
-                console.log(Object.values(Object.values(element)));
+                for (i in element) {
+                    let exterior = document.importNode(template.content, true);
+                    let text=exterior.querySelector(".box p");
+                    let circle=exterior.querySelector(".box .circle");
+                    text.innerText = i;
+                    // console.log(data.type.color.filter(x=>Object.keys(x)==i));
+                    let a=data.type.color.filter(x=>Object.keys(x)==i);
+                    console.log(Object.keys(Object.values(a[0])[0]))
+                    circle.style.backgroundColor=Object.keys(Object.values(a[0])[0]);
+                    title.append(exterior);
+                }
+
             });
+
             
         }
     </script>
 </body>
+
 </html>

@@ -99,19 +99,16 @@ main{
 }
 .title{
     width: 328px;
-    display: flex;
     font-size: 24px;
     margin-bottom: 15px;
     color: black;
     text-align: left;
-}
-.title span{
-    color: #86868B;
-}
-#b{
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+}
+.title span{
+    color: #86868B;
 }
 .box{
     width: 48%;
