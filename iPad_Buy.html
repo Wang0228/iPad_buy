@@ -42,28 +42,50 @@
         <div class="style">
             <div class="item">
                 <div class="title">
-                    <h4>外觀。</h4>
-                    <p>挑選喜愛的顏色。</p>
+                    <p>外觀。<span>挑選喜愛的顏色。</span></p>
                 </div>
-                <div id="b">
+                <template id="exterior">
                     <div class="box">
                         <div class="circle"></div>
-                        <p>太空灰色</p>
+                        <p></p>
                     </div>
+                </template>
+            </div>
+
+            <div class="item">
+                <div class="title">
+                    <p>儲存裝置。<span>選擇需要的儲存空間大小。</span></p>
+                </div>
+                <template id="storage">
                     <div class="box">
-                        <div class="circle"></div>
-                        <p>太空灰色</p>
+                        <h3></h3>
+                        <p></p>
                     </div>
-                    <div class="box">
-                        <div class="circle"></div>
-                        <p>太空灰色</p>
-                    </div>
+                </template>
+                <div class="storage_space">
+                    <h3>不確定需要多少儲存空間?</h3>
+                    <p>你的iPad Air 儲存空間越大,你就有越多空間儲存數位內容,滿足今日所需,也滿足未來需求。</p>
                 </div>
             </div>
         </div>
     </main>
 
 
-    <script></script>
+    <script>
+        let xhr=new XMLHttpRequest();
+        let data;
+        xhr.onload=function(){
+            data=JSON.parse(this.responseText);
+        }
+        xhr.open("GET","https://raw.githubusercontent.com/Wang0228/iPad_buy/master/iPad_Buy.json");
+        xhr.send();
+
+        window.onload=()=>{
+            data.type.color.forEach(element => {
+                console.log(Object.values(Object.values(element)));
+            });
+            
+        }
+    </script>
 </body>
 </html>

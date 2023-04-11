@@ -98,11 +98,14 @@ main{
     margin: 0  auto;
 }
 .title{
+    width: 328px;
     display: flex;
     font-size: 24px;
     margin-bottom: 15px;
+    color: black;
+    text-align: left;
 }
-.title p{
+.title span{
     color: #86868B;
 }
 #b{
@@ -124,11 +127,19 @@ main{
 .circle{
     width: 30px;
     height: 30px;
-    background-color: red;
     border-radius: 50%;
     margin-bottom: 8px;
     box-sizing: border-box;
 }
 .box p{
     font-size: 12px;
+}
+.storage_space{
+    width: 296px;
+    height: 95px;
+    background-color: #F5F5F7;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
