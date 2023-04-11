@@ -71,6 +71,26 @@
                     <p>你的iPad Air 儲存空間越大,你就有越多空間儲存數位內容,滿足今日所需,也滿足未來需求。</p>
                 </div>
             </div>
+
+            <div class="item">
+                <div class="title">
+                    <p>連線能力。<span>選擇連線方式</span></p>
+                </div>
+                <div class="block">
+                    <template id="wifi">
+                        <div class="longbox">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </template>
+                </div>
+                
+            </div>
+            <div class="storage_space">
+                <h3>想要進一步了解 Wi-Fi + 行動網路機型？</h3>
+                <p>如果現場沒有可供使用的 Wi-Fi，Wi-Fi + 行動網路機型可讓你透過行動網路數據方案保持連線。
+                    購買 Wi-Fi + 行動網路機型後，需要設定行動網路連線。</p>
+            </div>
         </div>
     </main>
 
@@ -105,9 +125,16 @@
             console.log(box2)
             for(i=0;i<box2.length;i++){
                 box2[i].addEventListener("click",()=>{
+                    
                     showprice();
                 })
             }
+
+            let template=document.querySelector("#wifi");
+            let wifi=document.importNode(template,true);
+            console.log(data.type.Connectivity)
+            wifi.querySelector(".longbox h3").innerText=Object.keys(data.type.Connectivity)[0];
+            
 
         }
         function showprice(){
