@@ -91,6 +91,12 @@
                 <p>如果現場沒有可供使用的 Wi-Fi，Wi-Fi + 行動網路機型可讓你透過行動網路數據方案保持連線。
                     購買 Wi-Fi + 行動網路機型後，需要設定行動網路連線。</p>
             </div>
+
+            <footer>
+                <div class="f_text">
+                    <p>NT$29,900</p>
+                </div>
+            </footer>
         </div>
     </main>
 
@@ -100,7 +106,7 @@
         let data;
         let color_link=[];
         let img=document.querySelector(".container img");
-        let price;
+        let price,temp,temp2;
         xhr.onload = function () {
             data = JSON.parse(this.responseText);
             
@@ -109,6 +115,7 @@
         xhr.send();
         // let price=data.basic_price;
         window.onload = () => {
+            document.querySelector(".buy h3").innerText=`購買 ${data.model}`;
             price=data.basic_price;
             showprice();
             color();
@@ -122,24 +129,44 @@
             storage();
 
             let box2=document.querySelectorAll(".item:nth-child(2) .box");
-            console.log(box2)
-            for(i=0;i<box2.length;i++){
+            for(let i=0;i<box2.length;i++){
                 box2[i].addEventListener("click",()=>{
-                    
+                    let {Storage}=data.type;
+                    temp=parseInt(Object.values(Storage[i]))+parseInt(data.basic_price)+5000;
+                    temp2=parseInt(Object.values(Storage[i]))+parseInt(data.basic_price);
+                    price=parseInt(Object.values(Storage[i]))+parseInt(data.basic_price);
                     showprice();
                 })
             }
 
-            let template=document.querySelector("#wifi");
-            let wifi=document.importNode(template,true);
-            console.log(data.type.Connectivity)
-            wifi.querySelector(".longbox h3").innerText=Object.keys(data.type.Connectivity)[0];
-            
+            wifi();
+            document.querySelector(".longbox:nth-child(2)").addEventListener("click",()=>{
+                price=parseInt(price)+parseInt(Object.values(data.type.Connectivity)[0])
+                if(price>temp2){
+                    price=temp2;
+                }
+                showfinalprice()
+            })
 
+            document.querySelector(".longbox:nth-child(3)").addEventListener("click",()=>{
+                price=parseInt(price)+parseInt(Object.values(data.type.Connectivity)[1])
+                if(price>temp){
+                    price=temp;
+                }
+                showfinalprice()
+            })
         }
         function showprice(){
-            document.querySelector(".buy h3").innerText+=data.model;
-            document.querySelector(".buy p").innerText+=price;
+            document.querySelector(".buy p").innerText=`NT$${price}起`;
+            let p =document.querySelector(".longbox:nth-child(2) p");
+            if(p){
+                document.querySelector(".longbox:nth-child(2) p").innerText=`NT${price}`;
+                document.querySelector(".longbox:nth-child(3) p").innerText=`NT${parseInt(price)+parseInt(Object.values(data.type.Connectivity)[1])}`;
+            }
+
+        }
+        function showfinalprice(){
+            document.querySelector(".buy p").innerText=`NT$${price}起`;
         }
 
         function color(){
@@ -181,6 +208,20 @@
             
             // G.querySelector(".box p").innerText=Object.values(Storage[0]);
             // console.log(Object.values(data.type.Storage));
+        }
+
+        function wifi(){
+            let block=document.querySelector(".block");
+            let template=document.querySelector("#wifi");
+            console.log(data.type.Connectivity.length)
+            for(let i =0 ;i<Object.keys(data.type.Connectivity).length;i++){
+                let wifi=document.importNode(template.content,true);
+            // console.log(Object.values(data.type.Connectivity))
+            wifi.querySelector(".longbox h3").innerText=Object.keys(data.type.Connectivity)[i];
+            wifi.querySelector(".longbox p").innerText=`NT$${parseInt(price)+parseInt(Object.values(data.type.Connectivity)[i])}`;
+            block.append(wifi);
+            }
+            
         }
     </script>
 </body>
