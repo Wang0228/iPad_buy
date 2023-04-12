@@ -107,6 +107,7 @@
         let color_link=[];
         let img=document.querySelector(".container img");
         let price,temp,temp2;
+        
         xhr.onload = function () {
             data = JSON.parse(this.responseText);
             
@@ -155,6 +156,9 @@
                 }
                 showfinalprice()
             })
+
+            setbutton();
+
         }
         function showprice(){
             document.querySelector(".buy p").innerText=`NT$${price}起`;
@@ -224,6 +228,25 @@
             block.append(wifi);
             }
             
+        }
+
+        function setbutton(){
+            let item2=document.querySelector(".item:nth-child(2)");
+            let item3=document.querySelector(".item:nth-child(3)");
+            let item1_button=document.querySelectorAll(".item:nth-child(1) .box");
+            let item2_button=document.querySelectorAll(".item:nth-child(2) .box");
+            item1_button.forEach(x=>{
+                x.addEventListener("click",()=>{
+                    item2.style.opacity="1";
+                    item2.style.pointerEvents="all";
+                })
+            })
+            item2_button.forEach(x=>{
+                x.addEventListener("click",()=>{
+                    item3.style.opacity="1";
+                    item3.style.pointerEvents="all";
+                })
+            })
         }
     </script>
 </body>

@@ -143,6 +143,14 @@ main{
 .box{
     cursor: pointer;
 }
+.item:nth-child(2){
+    pointer-events: none;
+    opacity: 0.3;
+}
+.item:nth-child(3){
+    pointer-events: none;
+    opacity: 0.3;
+}
 .item:nth-child(2) .title h3{
     font-size: 20px;
 }
