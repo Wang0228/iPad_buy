@@ -93,9 +93,9 @@
             </div>
 
             <footer>
-                <div class="f_text">
                     <p>NT$29,900</p>
-                </div>
+                    <p>含營業稅和其他法定稅費：約 NT$1,211。*</p>
+                    <button>加入購物袋</button>
             </footer>
         </div>
     </main>
@@ -163,10 +163,12 @@
                 document.querySelector(".longbox:nth-child(2) p").innerText=`NT${price}`;
                 document.querySelector(".longbox:nth-child(3) p").innerText=`NT${parseInt(price)+parseInt(Object.values(data.type.Connectivity)[1])}`;
             }
+            document.querySelector("footer p:nth-child(1)").innerText=`NT$${price}`;
 
         }
         function showfinalprice(){
             document.querySelector(".buy p").innerText=`NT$${price}起`;
+                
         }
 
         function color(){
